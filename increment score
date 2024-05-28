@@ -1,0 +1,15 @@
+export default function ScoreKeeper() {
+    const [score, setScore] = useState({P1Score:0, P2Score:0})
+    function incrementP1() {
+        setScore((score) => {return {...score, P1Score: score.P1Score + 1}})
+    }
+    function incrementP2() {
+        setScore((score) => {return {...score, P2Score: score.P2Score + 1}})
+    }
+    return <div>
+        <p>Player 1: {score.P1Score} </p>
+        <p>Player 2: {score.P2Score} </p>
+        <button onClick={incrementP1}>+1 player 1</button>
+        <button  onClick={incrementP2}>+1 player 2</button>
+    </div>
+}
