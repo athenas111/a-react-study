@@ -1,0 +1,31 @@
+/* eslint-disable react/prop-types */
+import { useState } from "react"
+
+ export default function ScoreKeeper({numPlayers, target}) {
+    const [score, setScore] = useState(new Array(numPlayers).fill(0)) //logica do num inicial
+    const incrementScore = (i) => {
+        setScore((oldScore) => {const olderScore = [...oldScore]; //logica de aumentar +1 
+           const newScore =  olderScore
+           newScore[i] +=1;
+           return newScore
+        })
+    }
+     
+    const winner = (score) => { //logica do vencedor quando chegar em 10
+       return score >= target? 'winner' : '';
+    }
+
+    const resetButton = () => { //logica para resetar o botão
+        setScore(Array(numPlayers).fill(0))
+    }
+    return <div>
+         {score.map((playerNum, i) => (<div key={i}>
+         <p>
+            <h3>Player{i + 1} : {playerNum} {winner(playerNum)} </h3>
+        <button onClick={() => {incrementScore(i)}}>+1</button>
+        <button onClick={resetButton}>reset</button>
+        </p>
+         </div>))}
+        
+    </div>
+ }
